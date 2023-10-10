@@ -1,35 +1,37 @@
 'use strict';
 
 const gameBoard = (function () {
-  const cells = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  const arrCell = ['', '', '', '', '', '', '', '', ''];
 
-  return { cells };
+  return { arrCell };
+})();
+
+const Players = (name, marker) => {
+  return { name, marker };
+};
+
+const renderBoardDOM = (function () {
+  const _boardDiv = document.querySelector('.container-board');
+
+  const renderCells = gameBoard.arrCell.forEach((element, id) => {
+    let _cell = document.createElement('div');
+    _cell.className = 'cells';
+    _cell.textContent = element;
+    _boardDiv.appendChild(_cell);
+    _cell.setAttribute('data-cell', id);
+  });
+
+  // const getCellId = () => {};
+
+  return { renderCells };
 })();
 
 const displayController = (function () {
-  return 'hello';
-})();
+  const humanPlayer = Players('Nikita', 'X');
+  const AIPlayer = Players('AI-3000', 'O');
+  let _activePlayer = humanPlayer.marker;
 
-const Players = (name, mark) => {
-  return { name, mark };
-};
+  // code to allow draw 'X' on board by _activePlayer
 
-const renderBoard = (function () {
-  const boardDiv = document.querySelector('.container-board');
-
-  for (let i = 0; i < 3; i++) {
-    const row = document.createElement('div');
-    row.className = 'row';
-    for (let j = 0; j < 3; j++) {
-      const column = document.createElement('div');
-      column.className = 'column';
-
-      row.appendChild(column);
-    }
-    boardDiv.appendChild(row);
-  }
-  const boardCells = gameBoard.cells;
-  boardCells.forEach(cell => {
-    column.textContent = cell;
-  });
+  return { humanPlayer, AIPlayer };
 })();
