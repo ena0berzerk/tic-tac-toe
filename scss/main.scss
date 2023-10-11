@@ -4,12 +4,15 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #191970;
+}
+
 .container {
   width: 880px;
   margin: 0 auto;
   background: tomato;
   padding: 5px;
-  // text-align: center;
   .container-board {
     display: grid;
     grid-template: repeat(3, 100px) / repeat(3, 100px);
@@ -19,12 +22,15 @@
     border: 2px solid black;
     padding: 3px;
     text-align: center;
-    .cells {
+    .cell {
       display: flex;
       align-items: center;
       justify-content: center;
       border: 1px solid black;
       user-select: none;
+      // &:hover {
+      //   cursor: pointer;
+      // }
     }
   }
 }

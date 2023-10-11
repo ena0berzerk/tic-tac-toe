@@ -5,6 +5,10 @@
           box-sizing: border-box;
 }
 
+body {
+  background-color: #191970;
+}
+
 .container {
   width: 880px;
   margin: 0 auto;
@@ -23,7 +27,7 @@
   padding: 3px;
   text-align: center;
 }
-.container .container-board .cells {
+.container .container-board .cell {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

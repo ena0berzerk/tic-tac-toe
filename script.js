@@ -14,14 +14,12 @@ const renderBoardDOM = (function () {
   const _boardDiv = document.querySelector('.container-board');
 
   const renderCells = gameBoard.arrCell.forEach((element, id) => {
-    let _cell = document.createElement('div');
-    _cell.className = 'cells';
-    _cell.textContent = element;
-    _boardDiv.appendChild(_cell);
-    _cell.setAttribute('data-cell', id);
+    let _createCell = document.createElement('div');
+    _createCell.className = 'cell';
+    _createCell.textContent = element;
+    _boardDiv.appendChild(_createCell);
+    _createCell.setAttribute('data-cell', id);
   });
-
-  // const getCellId = () => {};
 
   return { renderCells };
 })();
@@ -29,9 +27,20 @@ const renderBoardDOM = (function () {
 const displayController = (function () {
   const humanPlayer = Players('Nikita', 'X');
   const AIPlayer = Players('AI-3000', 'O');
+  const cells = document.querySelectorAll('.cell');
   let _activePlayer = humanPlayer.marker;
 
-  // code to allow draw 'X' on board by _activePlayer
+  cells.forEach(cell => {
+    cell.addEventListener('click', e => {
+      const targetCell = e.target.dataset.cell;
+      gameBoard.arrCell.splice(targetCell, 1, (e.target.textContent = _activePlayer));
+    });
+  });
+
+  const _checkActivePlayer =
+    _activePlayer === humanPlayer.marker ? AIPlayer.marker : humanPlayer.marker;
 
   return { humanPlayer, AIPlayer };
 })();
+
+// const findTargetCell = gameBoard.arrCell.indexOf(e.target); save for future to check if mark is already paint on board cell
