@@ -24,23 +24,47 @@ const renderBoardDOM = (function () {
   return { renderCells };
 })();
 
-const displayController = (function () {
+const gameController = (function () {
   const humanPlayer = Players('Nikita', 'X');
   const AIPlayer = Players('AI-3000', 'O');
   const cells = document.querySelectorAll('.cell');
   let _activePlayer = humanPlayer.marker;
 
+  const _switchActivePlayer = () =>
+    _activePlayer === humanPlayer.marker
+      ? (_activePlayer = AIPlayer.marker)
+      : (_activePlayer = humanPlayer.marker);
+
   cells.forEach(cell => {
     cell.addEventListener('click', e => {
-      const targetCell = e.target.dataset.cell;
-      gameBoard.arrCell.splice(targetCell, 1, (e.target.textContent = _activePlayer));
+      if (cell.childNodes.length === 0) {
+        const targetCell = e.target.dataset.cell;
+        gameBoard.arrCell.splice(targetCell, 1, (e.target.textContent = _activePlayer));
+        _switchActivePlayer();
+      }
     });
   });
 
-  const _checkActivePlayer =
-    _activePlayer === humanPlayer.marker ? AIPlayer.marker : humanPlayer.marker;
+  const getActivePlayer = () => _activePlayer;
 
-  return { humanPlayer, AIPlayer };
+  return { humanPlayer, AIPlayer, getActivePlayer, cells };
 })();
 
-// const findTargetCell = gameBoard.arrCell.indexOf(e.target); save for future to check if mark is already paint on board cell
+const checkGameOver = (function () {
+  // compare not the array but primitives
+  const combinationWin = [
+    // horisontal
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+  ];
+
+  const log = () => {
+    gameController.cells.forEach(item => {
+      const sh = item.getAttribute('data-cell').textContent;
+      console.log(sh);
+    });
+  };
+
+  return { combinationWin, log };
+})();
