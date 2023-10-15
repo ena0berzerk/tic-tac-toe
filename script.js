@@ -28,43 +28,34 @@ const gameController = (function () {
   const humanPlayer = Players('Nikita', 'X');
   const AIPlayer = Players('AI-3000', 'O');
   const cells = document.querySelectorAll('.cell');
-  let _activePlayer = humanPlayer.marker;
+  let _activePlayer = humanPlayer;
 
   const _switchActivePlayer = () =>
-    _activePlayer === humanPlayer.marker
-      ? (_activePlayer = AIPlayer.marker)
-      : (_activePlayer = humanPlayer.marker);
+    _activePlayer === humanPlayer ? (_activePlayer = AIPlayer) : (_activePlayer = humanPlayer);
 
   cells.forEach(cell => {
     cell.addEventListener('click', e => {
       if (cell.childNodes.length === 0) {
         const targetCell = e.target.dataset.cell;
-        gameBoard.arrCell.splice(targetCell, 1, (e.target.textContent = _activePlayer));
+        gameBoard.arrCell.splice(targetCell, 1, (e.target.textContent = _activePlayer.marker));
         _switchActivePlayer();
       }
     });
   });
 
-  const getActivePlayer = () => _activePlayer;
-
-  return { humanPlayer, AIPlayer, getActivePlayer, cells };
+  return { humanPlayer, AIPlayer, _activePlayer, cells };
 })();
 
 const checkGameOver = (function () {
   // compare not the array but primitives
-  const combinationWin = [
-    // horisontal
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-  ];
+  // 'some' method may helps when u need create 8 combinations
+  const winCondition = [[0, 1, 2]];
 
+  // const win1 = combinationWin[0] === gameBoard.arrCell
   const log = () => {
-    gameController.cells.forEach(item => {
-      const sh = item.getAttribute('data-cell').textContent;
-      console.log(sh);
-    });
+    const board = gameBoard.arrCell;
+    // board.slice(0, 3)
+    if (board[0]) return 'win';
   };
-
-  return { combinationWin, log };
+  return { winCondition, log };
 })();
