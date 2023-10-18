@@ -43,3 +43,35 @@ body {
       -ms-user-select: none;
           user-select: none;
 }
+
+.modal-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  backdrop-filter: blur(3px);
+}
+
+
+.modal-content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 410px;
+  padding: 14px;
+  color: #fff;
+  background-color: hsl(47, 89%, 56%);
+  /* border: 2px solid black; */
+  border-radius: 4px;
+}
+
+.hidden {
+    display: none;
+}
