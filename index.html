@@ -9,10 +9,28 @@
   </head>
   <body>
     <div class="container">
-      <h1>Tic Tac Toe Game</h1>
-      <p>Status Game</p>
-      <p>Active Player</p>
-      <p>Text Template</p>
+      <div class="header">
+        <h1>XO Game</h1>
+
+        <div class="btns">
+           <button class="btn start-btn" type='submit' form='name-form'>Start</button>
+           <button class="btn">Restart</button>
+        </div>
+      </div>
+      <div class="players-name">
+        <form method="#" id='name-form'>
+          <div>
+            <label for="playerone">X Name:</label> 
+            <input type="text" id='playerone'>
+          </div>
+          <div>
+            <label for="playertwo">O Name:</label>
+            <input type="text" id='playertwo'>
+          </div>
+        </form>
+      </div>
+
+
       <div class="container-board"></div>
     </div>
   </body>
