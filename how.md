@@ -66,7 +66,6 @@ if (isFullBoard) {
 
 
 
-Check why tie is not working
 
 
 

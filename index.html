@@ -10,7 +10,7 @@
   <body>
     <div class="container">
       <div class="header">
-        <h1>XO Game</h1>
+        <h1 class='header-h1'>XO Game</h1>
 
         <div class="btns">
            <button class="btn start-btn" type='submit' form='name-form'>Start</button>
@@ -18,20 +18,30 @@
         </div>
       </div>
       <div class="players-name">
-        <form method="#" id='name-form'>
+        <form class='name-form' method="#" id='name-form'>
+          <h2 class='header-h2'>Enter your names, warriors</h2>
           <div>
             <label for="playerone">X Name:</label> 
-            <input type="text" id='playerone'>
+            <input type="text" id='playerone' autofocus required>
           </div>
           <div>
             <label for="playertwo">O Name:</label>
-            <input type="text" id='playertwo'>
+            <input type="text" id='playertwo' required>
           </div>
         </form>
       </div>
 
+      <h2 class='which-turn hidden'>Turn</h2>
 
       <div class="container-board"></div>
+      <div class="blur-modal-board"></div>
+        
+      
+      <div class="players">
+        <p class="player-one hidden">''</p>
+        <p class="player-two hidden">''</p>
+      </div>
+
     </div>
   </body>
 </html>
