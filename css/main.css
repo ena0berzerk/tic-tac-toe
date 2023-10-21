@@ -172,8 +172,10 @@ input:focus {
   color: var(--text);
 }
 
-.which-turn {
+.gameover-h2 {
   text-align: center;
+  margin: 14px 0 12px 0;
+  user-select: none;
 }
 
 .container .container-board {
@@ -226,20 +228,16 @@ input:focus {
   visibility: hidden;
 }
 
-.hidden-board {
-  display: none;
-}
-
 .blur-modal-board {
   position: absolute;
-  top: 34%;
+  top: 36%;
   right: 41.1%;
   width: 330px;
-  height: 330px;
+  height: 340px;
   z-index: 2;
   text-align: center;
   color: var(--acc-br-purple);
   background: var(--bg-black);
-  filter: blur(11px) opacity(.8);
+  filter: blur(12px) opacity(.8);
 }
 
