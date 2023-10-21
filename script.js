@@ -77,7 +77,8 @@ const checkGameOver = (function () {
   const _textGameOver = document.querySelector('.gameover-h2');
 
   const renderGameOver = function() {
-    _textGameOver.textContent = `${gameController.activePlayer.name} is win!`;
+    _textGameOver.textContent = `${gameController._switchActivePlayer().name} is win!`;
+    _textGameOver.classList.remove('hidden');
   };
 
   const win = () => {
@@ -123,7 +124,7 @@ const checkGameOver = (function () {
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       return;
     } else if (_board[0] === 'O' && _board[1] === 'O' && _board[2] === 'O') {
-      console.log(`${gameController.activePlayer.name} is win!`);
+      console.log(`${gameController.AIPlayer.name} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderGameOver();
       return;
@@ -174,20 +175,24 @@ const gameController = (function () {
   const cells = document.querySelectorAll('.cell');
   let activePlayer = humanPlayer;
 
-  const _switchActivePlayer = () =>
-    activePlayer === humanPlayer ? (activePlayer = AIPlayer) : (activePlayer = humanPlayer);
+  const _switchActivePlayer = () => {
+    if (activePlayer === humanPlayer) {
+       return activePlayer = AIPlayer;
+    } else return activePlayer = humanPlayer;
+  };
+
 
   cells.forEach(cell => {
     cell.addEventListener('click', e => {
       if (cell.childNodes.length === 0) {
         const targetCell = e.target.dataset.cell;
         gameBoard.arrCell.splice(targetCell, 1, (e.target.textContent = activePlayer.marker));
+        checkGameOver.win()
         _switchActivePlayer();
-        checkGameOver.win();
         // getNamesFromForm.renderPlayersName();
       }
     });
   });
 
-  return { humanPlayer, AIPlayer, activePlayer, cells };
+  return { humanPlayer, AIPlayer, activePlayer, cells, _switchActivePlayer };
 })();

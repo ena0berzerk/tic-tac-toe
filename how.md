@@ -64,11 +64,15 @@ if (isFullBoard) {
     game continue
 } else 'its tie!'
 
-
-
-
-
-
+activePlayer = X
+x is marker on board
+active player = O 
+o marked board 
+active player x 
+// left 1 turn to win 
+x marked board 
+x is win 
+activePlayer = O? 
 
 
 
