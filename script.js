@@ -29,12 +29,12 @@ const checkGameOver = (function () {
   const _textGameOver = document.querySelector('.gameover-h2');
 
   const renderWinX = function () {
-    _textGameOver.textContent = `${gameController.humanPlayer.marker} is win!`;
+    _textGameOver.textContent = `${getNamesFromForm._namesXO[0]} is win!`;
     _textGameOver.classList.remove('hidden');
   };
 
   const renderWinO = function () {
-    _textGameOver.textContent = `${gameController.AIPlayer.marker} is win!`;
+    _textGameOver.textContent = `${getNamesFromForm._namesXO[1]} is win!`;
     _textGameOver.classList.remove('hidden');
   };
 
@@ -49,7 +49,6 @@ const checkGameOver = (function () {
       gameBoard.arrCell[1] === 'X' &&
       gameBoard.arrCell[2] === 'X'
     ) {
-      console.log(`${gameController.humanPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinX();
       return;
@@ -58,77 +57,62 @@ const checkGameOver = (function () {
       gameBoard.arrCell[4] === 'X' &&
       gameBoard.arrCell[5] === 'X'
     ) {
-      console.log(`${gameController.humanPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinX();
       return;
     } else if (_board[6] === 'X' && _board[7] === 'X' && _board[8] === 'X') {
-      console.log(`${gameController.humanPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinX();
       return;
     } else if (_board[0] === 'X' && _board[3] === 'X' && _board[6] === 'X') {
-      console.log(`${gameController.humanPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinX();
       return;
     } else if (_board[1] === 'X' && _board[4] === 'X' && _board[7] === 'X') {
-      console.log(`${gameController.humanPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinX();
       return;
     } else if (_board[2] === 'X' && _board[5] === 'X' && _board[8] === 'X') {
-      console.log(`${gameController.humanPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinX();
       return;
     } else if (_board[0] === 'X' && _board[4] === 'X' && _board[8] === 'X') {
-      console.log(`${gameController.humanPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinX();
       return;
     } else if (_board[2] === 'X' && _board[4] === 'X' && _board[6] === 'X') {
-      console.log(`${gameController.humanPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinX();
       return;
     } else if (_board[0] === 'O' && _board[1] === 'O' && _board[2] === 'O') {
-      console.log(`${gameController.AIPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinO();
       return;
     } else if (_board[3] === 'O' && _board[4] === 'O' && _board[5] === 'O') {
-      console.log(`${gameController.AIPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinO();
       return;
     } else if (_board[6] === 'O' && _board[7] === 'O' && _board[8] === 'O') {
-      console.log(`${gameController.AIPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinO();
       return;
     } else if (_board[0] === 'O' && _board[3] === 'O' && _board[6] === 'O') {
-      console.log(`${gameController.AIPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinO();
       return;
     } else if (_board[1] === 'O' && _board[4] === 'O' && _board[7] === 'O') {
-      console.log(`${gameController.AIPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinO();
       return;
     } else if (_board[2] === 'O' && _board[5] === 'O' && _board[8] === 'O') {
-      console.log(`${gameController.AIPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinO();
       return;
     } else if (_board[0] === 'O' && _board[4] === 'O' && _board[8] === 'O') {
-      console.log(`${gameController.AIPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinO();
       return;
     } else if (_board[2] === 'O' && _board[4] === 'O' && _board[6] === 'O') {
-      console.log(`${gameController.AIPlayer.marker} is win!`);
       gameController.cells.forEach(cell => cell.replaceWith(cell.cloneNode(true)));
       renderWinO();
       return;
@@ -140,7 +124,6 @@ const checkGameOver = (function () {
     if (gameBoard.arrCell.some(cl => cl === '')) {
       return gameController._switchActivePlayer();
     } else {
-      console.log('tie!');
       renderTie();
     }
   };
