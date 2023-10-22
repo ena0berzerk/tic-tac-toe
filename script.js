@@ -11,17 +11,17 @@ const Players = (name, marker) => {
 }
 
 const renderBoardDOM = (function () {
-  const _boardDiv = document.querySelector('.container-board');
+  const boardDiv = document.querySelector('.container-board');
 
-  const renderCells = gameBoard.arrCell.forEach((element, id) => {
+  const _renderCells = gameBoard.arrCell.forEach((element, id) => {
     let _createCell = document.createElement('div');
     _createCell.className = 'cell';
     _createCell.textContent = element;
-    _boardDiv.appendChild(_createCell);
+    boardDiv.appendChild(_createCell);
     _createCell.setAttribute('data-cell', id);
   });
 
-  return { renderCells, _boardDiv };
+  return { boardDiv };
 })();
 
 const checkGameOver = (function () {
@@ -29,12 +29,12 @@ const checkGameOver = (function () {
   const _textGameOver = document.querySelector('.gameover-h2');
 
   const renderWinX = function () {
-    _textGameOver.textContent = `${getNamesFromForm._namesXO[0]} is win!`;
+    _textGameOver.textContent = `${getNamesFromForm.namesXO[0]} is win!`;
     _textGameOver.classList.remove('hidden');
   };
 
   const renderWinO = function () {
-    _textGameOver.textContent = `${getNamesFromForm._namesXO[1]} is win!`;
+    _textGameOver.textContent = `${getNamesFromForm.namesXO[1]} is win!`;
     _textGameOver.classList.remove('hidden');
   };
 
@@ -122,7 +122,7 @@ const checkGameOver = (function () {
 
   const tie = function () {
     if (gameBoard.arrCell.some(cl => cl === '')) {
-      return gameController._switchActivePlayer();
+      return gameController.switchActivePlayer();
     } else {
       renderTie();
     }
@@ -145,28 +145,29 @@ const getNamesFromForm = (function () {
     return blurDiv.remove();
   };
 
-  let _namesXO = [];
+  let namesXO = [];
 
   _form.addEventListener('submit', el => {
      el.preventDefault();
      playersDiv.classList.add('hidden');
      removeBlurBlock();
-     _namesXO.push(`${_xPlayer.value}`, `${_oPlayer.value}`); 
+     namesXO.push(`${_xPlayer.value}`, `${_oPlayer.value}`); 
      renderPlayersName();
    });
 
 
   const renderPlayersName = function () {
-    textBottomPlayer1.textContent = `X: ${_namesXO[0]}`;
-    textBottomPlayer2.textContent = `O: ${_namesXO[1]}`;
+    textBottomPlayer1.textContent = `X: ${namesXO[0]}`;
+    textBottomPlayer2.textContent = `O: ${namesXO[1]}`;
+    textBottomPlayer1.classList.add('color-player1');
+    textBottomPlayer2.classList.add('color-player2');
     textBottomPlayer1.classList.remove('hidden');
     textBottomPlayer2.classList.remove('hidden');
 
   };
 
-  return { renderPlayersName, _namesXO };
+  return { renderPlayersName, namesXO };
 })();
-
 
 const gameController = (function () {
   const humanPlayer = Players(`Human Player 1`, `X`);
@@ -174,7 +175,7 @@ const gameController = (function () {
   const cells = document.querySelectorAll('.cell');
   let activePlayer = humanPlayer;
 
-  const _switchActivePlayer = () => {
+  const switchActivePlayer = () => {
     if (activePlayer === humanPlayer) {
       return (activePlayer = AIPlayer);
     } else return (activePlayer = humanPlayer);
@@ -185,12 +186,17 @@ const gameController = (function () {
       if (cell.childNodes.length === 0) {
         const targetCell = e.target.dataset.cell;
         gameBoard.arrCell.splice(targetCell, 1, (e.target.textContent = activePlayer.marker));
+        if (cell.textContent === 'X') {
+           cell.classList.add('clicked-X-cell');
+        } else {
+          cell.classList.add('clicked-O-cell')
+        }
         checkGameOver.win();
       }
     });
   });
 
-  return { activePlayer, cells, _switchActivePlayer, humanPlayer, AIPlayer };
+  return { activePlayer, cells, switchActivePlayer, humanPlayer, AIPlayer };
 })();
 
 const restart = (function () {

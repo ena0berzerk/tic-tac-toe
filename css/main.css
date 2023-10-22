@@ -209,6 +209,15 @@ input:focus {
   border: 1px solid var(--acc-br-purple);
   border-radius: 8px;
   background-color: var(--sec-dark-purple);
+  font-size: 22px;
+}
+
+.clicked-X-cell {
+  border-color: #70F570 !important;
+}
+
+.clicked-O-cell {
+ border-color: #E74C3C !important;
 }
 
 .players {
@@ -223,6 +232,15 @@ input:focus {
 .player-one {
   margin-left: 10px;
 }
+
+.color-player1 {
+  color: #70F570 !important;
+}
+
+.color-player2 {
+  color: #E74C3C !important;
+}
+
 
 .hidden {
   visibility: hidden;
