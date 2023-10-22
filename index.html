@@ -10,23 +10,25 @@
   <body>
     <div class="container">
       <div class="header">
-        <h1 class='header-h1'>XO Game</h1>
+        <h1 class="header-h1">XO Game</h1>
 
         <div class="btns">
-           <button class="btn start-btn" type='submit' form='name-form'>Start</button>
-           <button class="btn">Restart</button>
+          <button class="btn start-btn" type="submit" form="name-form">
+            Start
+          </button>
+          <button class="btn restart-btn">Restart</button>
         </div>
       </div>
       <div class="players-name">
-        <form class='name-form' method="#" id='name-form'>
-          <h2 class='header-h2'>Enter your names, warriors</h2>
+        <form class="name-form" method="#" id="name-form">
+          <h2 class="header-h2">Enter your names, warriors</h2>
           <div>
-            <label for="input-one">X Name:</label> 
-            <input type="text" id='input-one' autofocus required>
+            <label for="input-one">X Name:</label>
+            <input type="text" id="input-one" name="playerX" autofocus required />
           </div>
           <div>
             <label for="input-two">O Name:</label>
-            <input type="text" id='input-two' required>
+            <input type="text" id="input-two" name="playerO" required />
           </div>
         </form>
       </div>
@@ -35,13 +37,11 @@
 
       <div class="container-board"></div>
       <div class="blur-modal-board"></div>
-        
-      
-      <div class="players">
-        <p class="player-one hidden"></p>
-        <p class="player-two hidden"></p>
-      </div>
 
+      <div class="players">
+        <p class="text-bottom-player1 hidden"></p>
+        <p class="text-bottom-player2 hidden"></p>
+      </div>
     </div>
   </body>
 </html>
