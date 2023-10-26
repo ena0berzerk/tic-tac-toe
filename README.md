@@ -6,6 +6,7 @@
 ### Preview
 [Tic Tac Toe](https://ena0berzerk.github.io/odin-rock-paper-scissors/)
 
+
 ## Description
 
 A simple Tic-Tac-Toe game. I used this project to practice IIFE (module pattern) & Factory Functions
